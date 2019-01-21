@@ -1,6 +1,7 @@
 """HistogramBase - base for all histogram classes."""
 from __future__ import absolute_import, division
 import numpy as np
+import warnings
 from .binnings import as_binning
 
 
@@ -93,7 +94,7 @@ class HistogramBase(object):
             if frequencies.shape != self.shape:
                 raise RuntimeError("Values must have same dimension as bins.")
             if np.any(frequencies < 0):
-                raise RuntimeError("Cannot have negative frequencies.")
+                warnings.warn("There are negative frequencies.")
             self._frequencies = frequencies
         self._dtype, _ = self._eval_dtype(dtype)
 
