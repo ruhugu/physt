@@ -539,9 +539,12 @@ def polar_map(hist, ax, show_zero=True, show_colorbar=True, **kwargs):
     norm, cmap_data = _get_cmap_data(data, kwargs)
     colors = cmap(cmap_data)
 
-    rpos, phipos = (arr.flatten() for arr in hist.get_bin_left_edges())
+    rpos, phipos_left = (arr.flatten() for arr in hist.get_bin_left_edges())
     dr, dphi = (arr.flatten() for arr in hist.get_bin_widths())
     rmax, _ = (arr.flatten() for arr in hist.get_bin_right_edges())
+
+    # Center 
+    phipos = np.array(phipos_left) + 0.5*np.array(dphi)
 
     bar_args = {}
     if "zorder" in kwargs:
