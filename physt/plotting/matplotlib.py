@@ -555,7 +555,7 @@ def polar_map(hist, ax, show_zero=True, show_colorbar=True, **kwargs):
         if data[i] > 0 or show_zero:
             bin_color = colors[i]
             # TODO: align = "edge"
-            bars = ax.bar(phipos[i], dr[i], width=dphi[i], bottom=rpos[i], color=bin_color,
+            bars = ax.bar(phipos[i] + 0.5*dphi[i], dr[i], width=dphi[i], bottom=rpos[i], color=bin_color,
                           edgecolor=kwargs.get("grid_color", cmap(0.5)), lw=kwargs.get("lw", 0.5),
                           alpha=alphas[i], **bar_args)
 
